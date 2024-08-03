@@ -1,0 +1,40 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="!(isHandset$ | async)" class="sidenav" *ngIf="isHandset$ | async">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">Strona główna</a>
+      <a *ngFor="let item of menuTools"
+         mat-list-item
+         (click)="callRouteAction(item.route, item.clickAction)">{{ item.display }}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="toggleSidenav()" *ngIf="isHandset$ | async">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span routerLink="/" class="main-link">
+        <fa-icon class="people-icon" [icon]="faPeopleArrows"></fa-icon>
+        Networko</span>
+      <span class="spacer"></span>
+
+      <ng-container *ngIf="!(isHandset$ | async)">
+        <mat-nav-list class="list-horizontal">
+          <mat-list-item *ngFor="let item of menuTools">
+            <a (click)="callRouteAction(item.route, item.clickAction)">{{ item.display }}</a>
+          </mat-list-item>
+        </mat-nav-list>
+      </ng-container>
+    </mat-toolbar>
+
+    <div class="content">
+      <ng-container *ngIf="loadingService.isLoading$ | async">
+        <div class="loading-indicator">
+          <mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+        </div>
+      </ng-container>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

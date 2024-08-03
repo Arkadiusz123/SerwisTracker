@@ -1,0 +1,6 @@
+@SerwisTracker.Server_HostAddress = http://localhost:5245
+
+GET {{SerwisTracker.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

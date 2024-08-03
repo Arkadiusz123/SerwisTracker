@@ -1,0 +1,54 @@
+@use 'src/theme.scss' as custom-theme;
+@use '@angular/material' as mat;
+
+@include mat.all-component-themes(custom-theme.$app-theme);
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '~@angular/material/theming';
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+.disabled-input {
+  background-color: #f5f5f5;
+  color: #595957;
+  cursor: not-allowed;
+}
+
+mat-card {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+}
+
+.search-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  .search-container {
+    flex-direction: column;
+  }
+}
+
+.search-container mat-form-field {
+  flex: 1;
+  min-width: 120px;
+}
+
+.search-container button[mat-icon-button] {
+  align-self: center;
+}
