@@ -1,7 +1,7 @@
-﻿using ActivityFinder.Server.Database;
-using ActivityFinder.Server.User;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using SerwisTracker.Server.Database;
+using SerwisTracker.Server.User;
 
 namespace SerwisTrackerTests
 {
@@ -14,7 +14,7 @@ namespace SerwisTrackerTests
             _factory = factory;
         }
 
-        public async Task InitializeData(IEnumerable<Activity> activities = null)
+        public async Task InitializeData()
         {
             using (var scope = _factory.Services.CreateScope())
             {
@@ -27,15 +27,15 @@ namespace SerwisTrackerTests
                 db.Database.EnsureCreated();
                 var user = await SeedTestUser(userManager, roleManager);
 
-                if (activities?.Count() > 0) 
-                {
-                    foreach (var entity in activities)
-                    {
-                        entity.Creator = user;
-                        db.Add(entity);
-                    }
-                    db.SaveChanges();
-                }
+                //if (activities?.Count() > 0) 
+                //{
+                //    foreach (var entity in activities)
+                //    {
+                //        entity.Creator = user;
+                //        db.Add(entity);
+                //    }
+                //    db.SaveChanges();
+                //}
             }
         }
 
