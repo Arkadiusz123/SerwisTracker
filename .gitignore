@@ -406,3 +406,4 @@ FodyWeavers.xsd
 **/appsettings.Development.json
 **/appsettings.Production.json
 **/appsettings.Development.json
+/SerwisTracker.Server/appsettings.Staging.json
