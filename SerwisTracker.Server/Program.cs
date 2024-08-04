@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using SerwisTracker.Server.Cars;
 using SerwisTracker.Server.Database;
 using SerwisTracker.Server.Email;
 using SerwisTracker.Server.Middlewares;
@@ -40,6 +41,11 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));
 builder.Services.AddTransient<IEmailSender, EmailSender>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<ICarService, CarService>();
 
 builder.Services.AddAuthentication(options =>
 {
